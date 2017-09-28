@@ -3,9 +3,9 @@
  * Development time: 2 minutes
  * version 0.1
  */
+package Chess;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public abstract class Piece
 {
@@ -18,9 +18,10 @@ public abstract class Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type PieceType of what kind of piece
+     * @param type  PieceType of what kind of piece
      */
-    public Piece(PieceColor color, PieceType type) {
+    public Piece(PieceColor color, PieceType type)
+    {
         pieceColor = color;
         pieceType = type;
         moved = false;
@@ -28,29 +29,35 @@ public abstract class Piece
 
     /**
      * Getter for color
+     *
      * @return color of Piece
      */
-    public PieceColor getPieceColor() {
+    public PieceColor getPieceColor()
+    {
         return pieceColor;
     }
 
     /**
      * Setter for moved
      */
-    public void setMoved() {
+    public void setMoved()
+    {
         this.moved = true;
     }
 
     /**
      * Returns true if piece has moved, otherwise false
+     *
      * @return moved
      */
-    public boolean hasMoved() {
+    public boolean hasMoved()
+    {
         return moved;
     }
 
     /**
      * Returns the type in integer form
+     *
      * @return type
      */
     public int getTypeNumber()
@@ -60,17 +67,21 @@ public abstract class Piece
 
     /**
      * Getter for color
+     *
      * @return color
      */
-    public java.awt.Color getColor() {
+    public java.awt.Color getColor()
+    {
         return pieceColor.getColor();
     }
 
     /**
      * Getter for square piece is occupying
+     *
      * @return Square piece is occupying
      */
-    public Square getSquare() {
+    public Square getSquare()
+    {
         return square;
     }
 

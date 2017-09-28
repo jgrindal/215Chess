@@ -6,15 +6,21 @@
 
 import javax.swing.*;
 
+import Chess.*;
+
 /**
  * Driver class for chess program
+ *
  * @author JGrindal
- */public class Main {
+ */
+public class Main
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         JFrame frame = new JFrame("My chessboard");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);

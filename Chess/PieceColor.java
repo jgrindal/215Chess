@@ -3,6 +3,7 @@
  * Development time: 3 minutes
  * version 0.1
  */
+package Chess;
 
 import java.awt.Color;
 
@@ -11,17 +12,20 @@ import java.awt.Color;
  *
  * @author JGrindal
  */
-public enum PieceColor {
+public enum PieceColor
+{
 
     BLACK(Color.BLACK), WHITE(Color.WHITE);
 
     private final Color color;
 
-    PieceColor(Color color) {
+    PieceColor(Color color)
+    {
         this.color = color;
     }
 
-    public Color getColor() {
+    public Color getColor()
+    {
         return this.color;
     }
 }
