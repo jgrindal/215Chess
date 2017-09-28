@@ -5,9 +5,14 @@
  */
 package Chess;
 
+import javax.swing.*;
+
 /**
  *
  */
-public class Square
+public class Square extends JButton
 {
+    public Square(int row, int column, Board board)
+    {
+    }
 }
