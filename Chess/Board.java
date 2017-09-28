@@ -59,6 +59,7 @@ public class Board extends JPanel
     private JPanel createFilePanel()
     {
         JPanel filePanel = new JPanel(new GridLayout(1, 0));
+        // Files are labeled A-H
         for (int i = 0; i < SIZE; i++)
         {
             char fileChar = (char) ('A' + i);
@@ -75,10 +76,11 @@ public class Board extends JPanel
     private JPanel createRankPanel()
     {
         JPanel rankPanel = new JPanel(new GridLayout(0, 1));
+        //Ranks need to be loaded starting with the largest (top to bottom from white perspective)
         for (int i = 0; i < SIZE; i++)
         {
-            int row = SIZE - i;
-            rankPanel.add(new JLabel(String.valueOf(row)));
+            Integer row = SIZE - i;
+            rankPanel.add(new JLabel(row.toString()));
         }
         return rankPanel;
     }
@@ -89,56 +91,98 @@ public class Board extends JPanel
     public void create()
     {
         removeAll();
-        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints constraints = new GridBagConstraints();
         boardPanel = new JPanel(new GridLayout(SIZE, SIZE));
 
         setLayout(new GridBagLayout());
+        // Add all the Squares as elements
         for (int row = 0; row < SIZE; row++)
-        {
             for (int column = 0; column < SIZE; column++)
-            {
                 boardPanel.add(board[row][column]);
-            }
-        }
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 0.0;
-        gbc.weighty = 0.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(0, 10, 0, 10);
-        add(createRankPanel(), gbc);
+        /*
+        Grid Layout:
+                   |  FilePanel   |            |  newGame JButton
+        -----------+--------------+------------+------------------
+        RankPanel  |  boardPanel  |  RankPanel |
+        -----------+--------------+------------+
+                   |  FilePanel   |            |
+         */
 
-        gbc.gridx = 2;
-        gbc.anchor = GridBagConstraints.EAST;
-        add(createRankPanel(), gbc);
+        // Left RankPanel
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.insets = new Insets(0, 10, 0, 10);
+        add(createRankPanel(), constraints);
 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.SOUTH;
-        gbc.insets = new Insets(5, 0, 5, 0);
-        add(createFilePanel(), gbc);
+        // Right RankPanel
+        constraints.gridx = 2;
+        add(createRankPanel(), constraints);
 
-        gbc.gridy = 2;
-        gbc.anchor = GridBagConstraints.NORTH;
-        add(createFilePanel(), gbc);
+        // Top FilePanel
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(10, 0, 10, 0);
+        add(createFilePanel(), constraints);
 
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.EAST;
-        gbc.insets = new Insets(5, 0, 5, 5);
+        // Bottom FilePanel
+        constraints.gridy = 2;
+        add(createFilePanel(), constraints);
+
+        // New Game Button
+        constraints.gridx = 3;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(10, 0, 10, 10);
         JButton newGame = new JButton("New Game");
         newGame.addActionListener((ActionEvent e) -> create());
 
-        add(newGame, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(0, 0, 0, 0);
-        add(boardPanel, gbc);
-        add(boardPanel, gbc);
+        // boardPanel
+        add(newGame, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.insets = new Insets(0, 0, 0, 0);
+        add(boardPanel, constraints);
+        createStandardPieceSet();
+    }
+
+    /**
+     * Returns the Square at a specified row and column.  Returns null if out of bounds.
+     *
+     * @param row row to be checked
+     * @param col column to be checked
+     * @return the Square at row, col
+     */
+    public Square getSquare(int row, int col)
+    {
+        Square toRet = null;
+        if (row < SIZE && col < SIZE && row >= 0 && col >= 0)
+            toRet = board[row][col];
+        return toRet;
+    }
+
+    /**
+     * Generates standard board setup for 8 x 8 game
+     */
+    public void createStandardPieceSet()
+    {
+        //TODO: Finish for rest of standard pieces
+        // Pawns
+        for (int i = 0; i < SIZE; i++)
+        {
+            pieces.add(new Pawn(PieceColor.WHITE));
+            board[6][i].setPiece(pieces.get(pieces.size() - 1));
+            pieces.add(new Pawn(PieceColor.BLACK));
+            board[1][i].setPiece(pieces.get(pieces.size() - 1));
+        }
+        // White King
+        pieces.add(new King(PieceColor.WHITE));
+        board[7][4].setPiece(pieces.get(pieces.size() - 1));
+        whiteKingPiece = (King) pieces.get(pieces.size() - 1);
+        // Black King
+        pieces.add(new King(PieceColor.BLACK));
+        board[0][4].setPiece(pieces.get(pieces.size() - 1));
+        blackKingPiece = (King) pieces.get(pieces.size() - 1);
+
     }
 }

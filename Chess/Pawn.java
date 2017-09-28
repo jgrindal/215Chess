@@ -8,11 +8,10 @@ public class Pawn extends Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type  PieceType of what kind of piece
      */
-    public Pawn(PieceColor color, PieceType type)
+    public Pawn(PieceColor color)
     {
-        super(color, type);
+        super(color, PieceType.PAWN);
     }
 
     @Override
