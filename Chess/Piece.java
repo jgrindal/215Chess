@@ -5,6 +5,9 @@
  */
 package Chess;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Piece
@@ -85,7 +88,30 @@ public abstract class Piece
         return square;
     }
 
+    /**
+     * Setter for square that the piece is occupying
+     *
+     * @param square New Square the piece is occupying
+     */
+    public void setSquare(Square square)
+    {
+        this.square = square;
+    }
+
+    /**
+     * Gets icon for display on the board
+     *
+     * @return ImageIcon displaying piece's representation
+     */
+    public Icon getIcon()
+    {
+        String path = "/icons/piece.png";   //TODO: update this with new icon selector methodology
+        return new ImageIcon(getClass().getResource(path));
+    }
+
     public abstract ArrayList<Square> getPossibleMoves();
 
     public abstract ArrayList<Square> generatePossibleMoves();
+
+
 }

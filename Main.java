@@ -21,7 +21,9 @@ public class Main
      */
     public static void main(String[] args)
     {
-        JFrame frame = new JFrame("My chessboard");
+        Board board = new Board();
+        JFrame frame = new JFrame("SER 215 Chess");
+        frame.getContentPane().add(board);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.pack();

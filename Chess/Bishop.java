@@ -8,11 +8,10 @@ public class Bishop extends Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type  PieceType of what kind of piece
      */
-    public Bishop(PieceColor color, PieceType type)
+    public Bishop(PieceColor color)
     {
-        super(color, type);
+        super(color, PieceType.BISHOP);
     }
 
     @Override

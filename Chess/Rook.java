@@ -8,11 +8,10 @@ public class Rook extends Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type  PieceType of what kind of piece
      */
-    public Rook(PieceColor color, PieceType type)
+    public Rook(PieceColor color)
     {
-        super(color, type);
+        super(color, PieceType.ROOK);
     }
 
     @Override

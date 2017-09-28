@@ -8,11 +8,10 @@ public class Knight extends Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type  PieceType of what kind of piece
      */
-    public Knight(PieceColor color, PieceType type)
+    public Knight(PieceColor color)
     {
-        super(color, type);
+        super(color, PieceType.KNIGHT);
     }
 
     @Override

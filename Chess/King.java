@@ -8,11 +8,10 @@ public class King extends Piece
      * Constructor
      *
      * @param color PieceColor of set color
-     * @param type  PieceType of what kind of piece
      */
-    public King(PieceColor color, PieceType type)
+    public King(PieceColor color)
     {
-        super(color, type);
+        super(color, PieceType.KING);
     }
 
     @Override
