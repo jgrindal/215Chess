@@ -11,7 +11,7 @@ import Chess.*;
 /**
  * Driver class for chess program
  *
- * @author JGrindal, AJohnson
+ * @author JGrindal
  */
 public class Main
 {
