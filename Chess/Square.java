@@ -1,6 +1,6 @@
 /*
  * Piece.java
- * Development time: 43 minutes
+ * Development time: 47 minutes
  * version 0.1
  */
 package Chess;
@@ -70,7 +70,7 @@ public class Square extends JButton
      * @param col how many columns (to the left) offset
      * @return
      */
-    public Square neighbour(int row, int col)
+    public Square neighbor(int row, int col)
     {
         return board.getSquare(ROW + row, COLUMN + col);
     }
