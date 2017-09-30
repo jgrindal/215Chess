@@ -105,7 +105,8 @@ public abstract class Piece
      */
     public Icon getIcon()
     {
-        String path = "/icons/piece.png";   //TODO: update this with new icon selector methodology
+        //String path = "/icons/" + this.pieceColor + this.pieceType + ".png";   //TODO: switch to this when icons are made
+        String path = "/icons/" + "piece.png";
         return new ImageIcon(getClass().getResource(path));
     }
 

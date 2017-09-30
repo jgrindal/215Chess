@@ -175,6 +175,35 @@ public class Board extends JPanel
             pieces.add(new Pawn(PieceColor.BLACK));
             board[1][i].setPiece(pieces.get(pieces.size() - 1));
         }
+        // Rooks
+        for (int i = 0; i < 8; i += 7)
+        {
+            pieces.add(new Rook(PieceColor.WHITE));
+            board[7][i].setPiece(pieces.get(pieces.size() - 1));
+            pieces.add(new Rook(PieceColor.BLACK));
+            board[0][i].setPiece(pieces.get(pieces.size() - 1));
+        }
+        // Knights
+        for (int i = 1; i < 8; i += 5)
+        {
+            pieces.add(new Knight(PieceColor.WHITE));
+            board[7][i].setPiece(pieces.get(pieces.size() - 1));
+            pieces.add(new Knight(PieceColor.BLACK));
+            board[0][i].setPiece(pieces.get(pieces.size() - 1));
+        }
+        // Bishops
+        for (int i = 2; i < 8; i += 3)
+        {
+            pieces.add(new Bishop(PieceColor.WHITE));
+            board[7][i].setPiece(pieces.get(pieces.size() - 1));
+            pieces.add(new Bishop(PieceColor.BLACK));
+            board[0][i].setPiece(pieces.get(pieces.size() - 1));
+        }
+        //Queens
+        pieces.add(new Queen(PieceColor.WHITE));
+        board[7][3].setPiece(pieces.get(pieces.size() - 1));
+        pieces.add(new Queen(PieceColor.BLACK));
+        board[0][3].setPiece(pieces.get(pieces.size() - 1));
         // White King
         pieces.add(new King(PieceColor.WHITE));
         board[7][4].setPiece(pieces.get(pieces.size() - 1));

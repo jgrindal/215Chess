@@ -41,9 +41,9 @@ public class Square extends JButton
     public Color getColor()
     {
         if ((ROW + COLUMN) % 2 == 0)
-            return Color.BLACK;
+            return Color.DARK_GRAY;
         else
-            return Color.WHITE;
+            return Color.LIGHT_GRAY;
     }
 
     /**
