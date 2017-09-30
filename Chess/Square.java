@@ -15,16 +15,23 @@ import java.awt.event.ActionEvent;
 public class Square extends JButton
 {
     public final int ROW;
-    public final int COLUMN;
+    public final int COL;
     private Piece piece;
     private final Board board;
     private boolean selected;
 
-    public Square(int row, int column, Board board)
+    /**
+     * Constructor
+     *
+     * @param row   Row of the Square
+     * @param col   Column of the Square
+     * @param board Board to which the Square belongs
+     */
+    public Square(int row, int col, Board board)
     {
         this.board = board;
         ROW = row;
-        COLUMN = column;
+        COL = col;
         selected = false;
         setFocusPainted(false);
         setBackground(getColor());
@@ -40,7 +47,7 @@ public class Square extends JButton
      */
     public Color getColor()
     {
-        if ((ROW + COLUMN) % 2 == 0)
+        if ((ROW + COL) % 2 == 0)
             return Color.DARK_GRAY;
         else
             return Color.LIGHT_GRAY;
@@ -72,7 +79,7 @@ public class Square extends JButton
      */
     public Square neighbor(int row, int col)
     {
-        return board.getSquare(ROW + row, COLUMN + col);
+        return board.getSquare(ROW + row, COL + col);
     }
 
     /**
