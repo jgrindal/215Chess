@@ -58,7 +58,19 @@ public class Square extends JButton
      */
     private void select()
     {
-        // TODO: Add the magic here
+        if (piece != null)
+        {
+            if (piece.getColor() == PieceColor.WHITE && board.getTurn())
+            {
+                board.deselect();
+                board.setSelected(this);
+                this.selected = true;
+                setBackground(Color.GREEN);
+                piece.printPossibleMoves();
+            }
+        }
+
+        // TODO: Incomplete
     }
 
     /**

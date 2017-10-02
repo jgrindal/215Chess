@@ -5,7 +5,6 @@
  */
 package Chess;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ public abstract class Piece
     private final PieceColor pieceColor;
     private Square square;
     private boolean moved;  // Begins as false, can only be set to true using setMoved().
+    private ArrayList<Square> possibleMoves;
 
     /**
      * Constructor
@@ -73,9 +73,9 @@ public abstract class Piece
      *
      * @return color
      */
-    public java.awt.Color getColor()
+    public PieceColor getColor()
     {
-        return pieceColor.getColor();
+        return pieceColor;
     }
 
     /**
@@ -105,9 +105,21 @@ public abstract class Piece
      */
     public Icon getIcon()
     {
-        //String path = "/icons/" + this.pieceColor + this.pieceType + ".png";   //TODO: switch to this when icons are made
-        String path = "/icons/" + "piece.png";
+        String path = "/icons/" + this.pieceColor + this.pieceType + ".png";
+        //        String path = "/icons/" + "piece.png";
         return new ImageIcon(getClass().getResource(path));
+    }
+
+    public void printPossibleMoves()
+    {
+        generatePossibleMoves();
+        for (Square s : possibleMoves)
+        {
+            if (s.getPiece().getColor() != this.getColor())
+                s.setBackground(Color.RED);
+            else
+                s.setBackground(Color.GREEN);
+        }
     }
 
     public abstract ArrayList<Square> getPossibleMoves();

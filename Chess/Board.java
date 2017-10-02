@@ -29,6 +29,7 @@ public class Board extends JPanel
     private boolean check;
     private King whiteKingPiece;
     private King blackKingPiece;
+    private boolean cheater;
 
     /**
      * Constructor
@@ -135,7 +136,15 @@ public class Board extends JPanel
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(10, 0, 10, 10);
         JButton newGame = new JButton("New Game");
-        newGame.addActionListener((ActionEvent e) -> create());
+        newGame.addActionListener((ActionEvent e) -> createStandardPieceSet());
+
+        // Clear Button
+        constraints.gridx = 3;
+        constraints.gridy = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.insets = new Insets(10, 0, 10, 10);
+        JButton clear = new JButton("Clear Board");
+        clear.addActionListener((ActionEvent e) -> clearBoard());
 
         // boardPanel
         add(newGame, constraints);
@@ -162,11 +171,20 @@ public class Board extends JPanel
     }
 
     /**
+     * Clears the board for a new game reset.
+     */
+    public void clearBoard()
+    {
+        pieces.clear();
+        whitePieces.clear();
+        blackPieces.clear();
+    }
+
+    /**
      * Generates standard board setup for 8 x 8 game
      */
     public void createStandardPieceSet()
     {
-        //TODO: Finish for rest of standard pieces
         // Pawns
         for (int i = 0; i < SIZE; i++)
         {
@@ -212,6 +230,53 @@ public class Board extends JPanel
         pieces.add(new King(PieceColor.BLACK));
         board[0][4].setPiece(pieces.get(pieces.size() - 1));
         blackKingPiece = (King) pieces.get(pieces.size() - 1);
+    }
 
+    /**
+     * Returns who's turn it is in the game
+     *
+     * @return true if white, false if black.
+     */
+    public boolean getTurn()
+    {
+        return turn;
+    }
+
+    /**
+     * Return selected Square
+     *
+     * @return Selected Square
+     */
+    public Square getSelected()
+    {
+        return selectedSquare;
+    }
+
+    /**
+     * Select a Square for action
+     *
+     * @param square Square to select
+     */
+    public void setSelected(Square square)
+    {
+        selectedSquare = square;
+    }
+
+    /**
+     * Reset selection to none.
+     */
+    public void deselect()
+    {
+        if (selectedSquare != null)
+        {
+            selectedSquare.deselect();
+            for (Square[] squares : board)
+            {
+                for (Square square : squares)
+                {
+                    square.setBackground(square.getColor());
+                }
+            }
+        }
     }
 }
