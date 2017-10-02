@@ -69,6 +69,8 @@ public class Square extends JButton
                 piece.printPossibleMoves();
             }
         }
+
+        // TODO: Incomplete
     }
 
     /**
