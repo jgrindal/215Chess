@@ -17,7 +17,7 @@ public class Rook extends Piece
     @Override
     public ArrayList<Square> getPossibleMoves()
     {
-        return null;
+        return possibleMoves;
     }
 
     @Override

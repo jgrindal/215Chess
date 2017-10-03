@@ -17,7 +17,7 @@ public class Queen extends Piece
     @Override
     public ArrayList<Square> getPossibleMoves()
     {
-        return null;
+        return possibleMoves;
     }
 
     @Override

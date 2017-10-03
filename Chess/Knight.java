@@ -17,7 +17,7 @@ public class Knight extends Piece
     @Override
     public ArrayList<Square> getPossibleMoves()
     {
-        return null;
+        return possibleMoves;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Knight extends Piece
         //move forward - right
         try
         {
-            if (square.neighbor(1, 2).isEmpty())
+            if (square.neighbor(1, 2).isEmpty() || square.neighbor(1, 2).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(1, 2));
             }
@@ -38,7 +38,7 @@ public class Knight extends Piece
         //move forward - left
         try
         {
-            if (square.neighbor(-1, 2).isEmpty())
+            if (square.neighbor(-1, 2).isEmpty() || square.neighbor(-1, 2).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(-1, 2));
             }
@@ -50,7 +50,7 @@ public class Knight extends Piece
         //move backward - right
         try
         {
-            if (square.neighbor(1, -2).isEmpty())
+            if (square.neighbor(1, -2).isEmpty() || square.neighbor(1, -2).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(1, -2));
             }
@@ -62,7 +62,7 @@ public class Knight extends Piece
         //move backward - left
         try
         {
-            if (square.neighbor(-1, -2).isEmpty())
+            if (square.neighbor(-1, -2).isEmpty() || square.neighbor(-1, -2).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(-1, -2));
             }
@@ -74,7 +74,7 @@ public class Knight extends Piece
         //move left - up
         try
         {
-            if (square.neighbor(-2, 1).isEmpty())
+            if (square.neighbor(-2, 1).isEmpty() || square.neighbor(-2, 1).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(-2, 1));
             }
@@ -86,7 +86,7 @@ public class Knight extends Piece
         //move left - down
         try
         {
-            if (square.neighbor(-2, -1).isEmpty())
+            if (square.neighbor(-2, -1).isEmpty() || square.neighbor(-2, -1).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(-2, -1));
             }
@@ -98,7 +98,7 @@ public class Knight extends Piece
         //move right - up
         try
         {
-            if (square.neighbor(2, 1).isEmpty())
+            if (square.neighbor(2, 1).isEmpty() || square.neighbor(2, 1).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(2, 1));
             }
@@ -110,7 +110,7 @@ public class Knight extends Piece
         //move right - down
         try
         {
-            if (square.neighbor(2, -1).isEmpty())
+            if (square.neighbor(2, -1).isEmpty() || square.neighbor(2, -1).getPiece().getColor() != getColor())
             {
                 possibleMoves.add(square.neighbor(2, -1));
             }
