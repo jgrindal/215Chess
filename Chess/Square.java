@@ -36,7 +36,15 @@ public class Square extends JButton
         setFocusPainted(false);
         setBackground(getColor());
         setPreferredSize(new Dimension(80, 80));
-        addActionListener((ActionEvent e) -> select());
+        // Describe action about clicking here
+        addActionListener((ActionEvent e) ->
+        {
+            // If the Square is selected already, deselect it.  Else, select it.
+            if (this.selected)
+                this.deselect();
+            else
+                this.select();
+        });
 
     }
 
@@ -60,7 +68,7 @@ public class Square extends JButton
     {
         if (piece != null)
         {
-            if (piece.getColor() == PieceColor.WHITE && board.getTurn())
+            if ((piece.getColor() == PieceColor.WHITE && !board.getTurn()) || (piece.getColor() == PieceColor.BLACK && board.getTurn()))
             {
                 board.deselect();
                 board.setSelected(this);
