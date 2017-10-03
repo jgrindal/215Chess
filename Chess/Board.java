@@ -230,6 +230,10 @@ public class Board extends JPanel
         pieces.add(new King(PieceColor.BLACK));
         board[0][4].setPiece(pieces.get(pieces.size() - 1));
         blackKingPiece = (King) pieces.get(pieces.size() - 1);
+
+        // TODO: REMOVE TEST PAWN
+        pieces.add(new Pawn(PieceColor.BLACK));
+        board[5][2].setPiece(pieces.get(pieces.size() - 1));
     }
 
     /**

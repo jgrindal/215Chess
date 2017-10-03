@@ -13,9 +13,9 @@ public abstract class Piece
 {
     private final PieceType pieceType;
     private final PieceColor pieceColor;
-    private Square square;
+    protected Square square;
     private boolean moved;  // Begins as false, can only be set to true using setMoved().
-    private ArrayList<Square> possibleMoves;
+    protected ArrayList<Square> possibleMoves;
 
     /**
      * Constructor
@@ -28,6 +28,7 @@ public abstract class Piece
         pieceColor = color;
         pieceType = type;
         moved = false;
+        possibleMoves = new ArrayList<>();
     }
 
     /**
@@ -115,10 +116,10 @@ public abstract class Piece
         generatePossibleMoves();
         for (Square s : possibleMoves)
         {
-            if (s.getPiece().getColor() != this.getColor())
-                s.setBackground(Color.RED);
-            else
+            if (s.isEmpty())
                 s.setBackground(Color.GREEN);
+            else
+                s.setBackground(Color.RED);
         }
     }
 

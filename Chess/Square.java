@@ -87,6 +87,13 @@ public class Square extends JButton
     public void deselect()
     {
         setBackground(getColor());
+        if (!this.isEmpty())
+        {
+            for (Square s : this.getPiece().getPossibleMoves())
+            {
+                s.setBackground(s.getColor());
+            }
+        }
         selected = false;
     }
 
@@ -97,8 +104,11 @@ public class Square extends JButton
      * @param col how many columns (to the left) offset
      * @return
      */
-    public Square neighbor(int row, int col)
+    public Square neighbor(int row, int col) throws NullSquareException
     {
+        Square toRet = board.getSquare(ROW + row, COL + col);
+        if (toRet == null)
+            throw new NullSquareException(String.valueOf(ROW + row) + ", " + String.valueOf(COL + col));
         return board.getSquare(ROW + row, COL + col);
     }
 
@@ -110,6 +120,7 @@ public class Square extends JButton
     public void setPiece(Piece piece)
     {
         this.piece = piece;
+        piece.setSquare(this);
         setIcon(this.piece.getIcon());
     }
 

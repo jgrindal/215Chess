@@ -23,6 +23,101 @@ public class Knight extends Piece
     @Override
     public ArrayList<Square> generatePossibleMoves()
     {
-        return null;
+        //move forward - right
+        try
+        {
+            if (square.neighbor(1, 2).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(1, 2));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move forward - left
+        try
+        {
+            if (square.neighbor(-1, 2).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(-1, 2));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move backward - right
+        try
+        {
+            if (square.neighbor(1, -2).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(1, -2));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move backward - left
+        try
+        {
+            if (square.neighbor(-1, -2).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(-1, -2));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move left - up
+        try
+        {
+            if (square.neighbor(-2, 1).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(-2, 1));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move left - down
+        try
+        {
+            if (square.neighbor(-2, -1).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(-2, -1));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move right - up
+        try
+        {
+            if (square.neighbor(2, 1).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(2, 1));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+
+        //move right - down
+        try
+        {
+            if (square.neighbor(2, -1).isEmpty())
+            {
+                possibleMoves.add(square.neighbor(2, -1));
+            }
+        } catch (NullSquareException e)
+        {
+            System.out.println(e);
+        }
+        return possibleMoves;
     }
 }
