@@ -137,6 +137,7 @@ public class Board extends JPanel
         constraints.insets = new Insets(10, 0, 10, 10);
         JButton newGame = new JButton("New Game");
         newGame.addActionListener((ActionEvent e) -> createStandardPieceSet());
+        add(newGame, constraints);
 
         // Clear Button
         constraints.gridx = 3;
@@ -145,9 +146,10 @@ public class Board extends JPanel
         constraints.insets = new Insets(10, 0, 10, 10);
         JButton clear = new JButton("Clear Board");
         clear.addActionListener((ActionEvent e) -> clearBoard());
+        add(clear, constraints);
 
         // boardPanel
-        add(newGame, constraints);
+
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.insets = new Insets(0, 0, 0, 0);
@@ -175,9 +177,13 @@ public class Board extends JPanel
      */
     public void clearBoard()
     {
+        for (int row = 0; row < SIZE; row++)
+            for (int column = 0; column < SIZE; column++)
+                board[row][column].removePiece();
         pieces.clear();
         whitePieces.clear();
         blackPieces.clear();
+
     }
 
     /**
