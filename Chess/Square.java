@@ -39,7 +39,9 @@ public class Square extends JButton
         // Describe action about clicking here
         addActionListener((ActionEvent e) ->
         {
-            // If the Square is selected already, deselect it.  Else, select it.
+            Square curr = board.getSelected();
+            if (curr != null && curr != this && !curr.isEmpty() && curr.getPiece().getPossibleMoves().contains(this))
+                movePiece(curr.getPiece());
             if (this.selected)
                 this.deselect();
             else
@@ -131,7 +133,16 @@ public class Square extends JButton
      */
     public void movePiece(Piece piece)
     {
-        //TODO: Add the magic here
+        Square curr = board.getSelected();
+        curr.deselect();
+        if (!isEmpty())
+        {
+            removePiece();
+        }
+        setPiece(piece);
+        curr.removePiece();
+        board.swapTurn();
+        piece.setMoved();
     }
 
     /**
@@ -139,6 +150,7 @@ public class Square extends JButton
      */
     public void removePiece()
     {
+        // TODO: Interact with board to remove piece from ArrayLists
         piece = null;
         setIcon(null);
     }

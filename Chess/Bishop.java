@@ -23,7 +23,7 @@ public class Bishop extends Piece
     @Override
     public ArrayList<Square> generatePossibleMoves()
     {
-        //TODO: Test this
+        possibleMoves.clear();
         for (int i = 1; i < 8; i++)
         {
             try

@@ -23,6 +23,7 @@ public class Knight extends Piece
     @Override
     public ArrayList<Square> generatePossibleMoves()
     {
+        possibleMoves.clear();
         //move forward - right
         try
         {

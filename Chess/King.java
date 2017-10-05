@@ -23,6 +23,7 @@ public class King extends Piece
     @Override
     public ArrayList<Square> generatePossibleMoves()
     {
+        possibleMoves.clear();
         //move forward -- 1 square, unoccupied by own team piece, no check
         try
         {

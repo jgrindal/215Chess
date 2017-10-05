@@ -29,7 +29,6 @@ public class Board extends JPanel
     private boolean check;
     private King whiteKingPiece;
     private King blackKingPiece;
-    private boolean cheater;
 
     /**
      * Constructor
@@ -92,6 +91,7 @@ public class Board extends JPanel
     public void create()
     {
         removeAll();
+        clearBoard();
         GridBagConstraints constraints = new GridBagConstraints();
         boardPanel = new JPanel(new GridLayout(SIZE, SIZE));
 
@@ -149,7 +149,6 @@ public class Board extends JPanel
         add(clear, constraints);
 
         // boardPanel
-
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.insets = new Insets(0, 0, 0, 0);
@@ -236,10 +235,6 @@ public class Board extends JPanel
         pieces.add(new King(PieceColor.BLACK));
         board[0][4].setPiece(pieces.get(pieces.size() - 1));
         blackKingPiece = (King) pieces.get(pieces.size() - 1);
-
-        // TODO: REMOVE TEST PAWN
-        pieces.add(new Pawn(PieceColor.BLACK));
-        board[5][2].setPiece(pieces.get(pieces.size() - 1));
     }
 
     /**
@@ -250,6 +245,14 @@ public class Board extends JPanel
     public boolean getTurn()
     {
         return turn;
+    }
+
+    /**
+     * Updates the turn
+     */
+    public void swapTurn()
+    {
+        turn = !turn;
     }
 
     /**

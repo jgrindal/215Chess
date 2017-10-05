@@ -28,6 +28,7 @@ public class Pawn extends Piece
     @Override
     public ArrayList<Square> generatePossibleMoves()
     {
+        possibleMoves.clear();
         // Directional modifier based on whether piece is black or white.
         int dirModifier;
         if (this.getColor() == PieceColor.BLACK)
@@ -42,7 +43,7 @@ public class Pawn extends Piece
             //move forward one square
             if (square.neighbor(dirModifier * 1, 0).isEmpty())
             {
-                possibleMoves.add(square.neighbor(-1, 0));
+                possibleMoves.add(square.neighbor(dirModifier * 1, 0));
             }
         } catch (NullSquareException e)
         {
@@ -56,7 +57,7 @@ public class Pawn extends Piece
             {
                 if (square.neighbor(dirModifier * 1, 0).isEmpty() && square.neighbor(dirModifier * 2, 0).isEmpty())
                 {
-                    possibleMoves.add(square.neighbor(-2, 0));
+                    possibleMoves.add(square.neighbor(dirModifier * 2, 0));
                 }
             }
         } catch (NullSquareException e)
