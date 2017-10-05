@@ -47,7 +47,6 @@ public class Square extends JButton
             else
                 this.select();
         });
-
     }
 
     /**
@@ -143,6 +142,7 @@ public class Square extends JButton
         curr.removePiece();
         board.swapTurn();
         piece.setMoved();
+        board.isCheck();
     }
 
     /**

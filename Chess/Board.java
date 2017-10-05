@@ -20,8 +20,6 @@ public class Board extends JPanel
 {
     public static final int SIZE = 8;
     private ArrayList<Piece> pieces;
-    private ArrayList<Piece> whitePieces;
-    private ArrayList<Piece> blackPieces;
     private Square[][] board;
     private Square selectedSquare;
     private JPanel boardPanel;
@@ -37,8 +35,6 @@ public class Board extends JPanel
     {
         // Initialize Pieces first
         pieces = new ArrayList<>();
-        whitePieces = new ArrayList<>();
-        blackPieces = new ArrayList<>();
         turn = false;
         check = false;
         board = new Square[SIZE][SIZE];
@@ -92,6 +88,7 @@ public class Board extends JPanel
     {
         removeAll();
         clearBoard();
+        turn = false;
         GridBagConstraints constraints = new GridBagConstraints();
         boardPanel = new JPanel(new GridLayout(SIZE, SIZE));
 
@@ -136,7 +133,7 @@ public class Board extends JPanel
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.insets = new Insets(10, 0, 10, 10);
         JButton newGame = new JButton("New Game");
-        newGame.addActionListener((ActionEvent e) -> createStandardPieceSet());
+        newGame.addActionListener((ActionEvent e) -> create());
         add(newGame, constraints);
 
         // Clear Button
@@ -180,9 +177,6 @@ public class Board extends JPanel
             for (int column = 0; column < SIZE; column++)
                 board[row][column].removePiece();
         pieces.clear();
-        whitePieces.clear();
-        blackPieces.clear();
-
     }
 
     /**
@@ -190,6 +184,7 @@ public class Board extends JPanel
      */
     public void createStandardPieceSet()
     {
+        clearBoard();
         // Pawns
         for (int i = 0; i < SIZE; i++)
         {
@@ -291,5 +286,21 @@ public class Board extends JPanel
                 }
             }
         }
+    }
+
+    public boolean isCheck()
+    {
+        for (Piece curPiece : pieces)
+        {
+            curPiece.generatePossibleMoves();
+            for (Square curSquare : curPiece.getPossibleMoves())
+            {
+                if ((!turn && curSquare.getPiece() == whiteKingPiece) || (turn && curSquare.getPiece() == blackKingPiece))
+                {
+                    check = true;
+                }
+            }
+        }
+        return check;
     }
 }

@@ -121,7 +121,6 @@ public class King extends Piece
         } catch (NullSquareException e)
         {
             System.out.println(e);
-            ;
         }
         //"castling": exchange place with rook -- up to 3 squares
         return null;
